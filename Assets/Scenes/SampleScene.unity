@@ -484,8 +484,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.13607645, y: -0.0014860488, z: 0.00020411491, w: 0.9906972}
+  m_LocalPosition: {x: -2.437585, y: 0.7980337, z: -9.941952}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -695,6 +695,7 @@ GameObject:
   - component: {fileID: 1986535582}
   - component: {fileID: 1986535581}
   - component: {fileID: 1986535580}
+  - component: {fileID: 1986535583}
   m_Layer: 0
   m_Name: WallLeft
   m_TagString: Untagged
@@ -779,3 +780,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1986535578}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1986535583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986535578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d046fbd13d450384c82a1ff0a06f3546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DisablePixelLights: 1
+  m_TextureSize: 1024
+  m_ClipPlaneOffset: 0.07
+  m_ReflectLayers:
+    m_Bits: 4294967295
+  m_ReflectionTexture: {fileID: 0}
+  m_OldReflectionTextureSize: 0
