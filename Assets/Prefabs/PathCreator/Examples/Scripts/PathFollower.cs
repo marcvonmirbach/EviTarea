@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 namespace PathCreation.Examples
 {
     // Moves along a path at constant speed.
@@ -7,6 +7,7 @@ namespace PathCreation.Examples
     public class PathFollower : MonoBehaviour
     {
         [SerializeField] private GameObject sword;
+        [SerializeField] private Text score;
         public PathCreator pathCreator;
         public EndOfPathInstruction endOfPathInstruction;
         public float speed = 3;
@@ -14,6 +15,7 @@ namespace PathCreation.Examples
         private Vector3 initialPos;
 
         void Start() {
+            score.text = "0";
             initialPos = this.transform.position;
             if (pathCreator != null)
             {
@@ -45,6 +47,7 @@ namespace PathCreation.Examples
             {
                 this.transform.position = initialPos;
                 distanceTravelled = 0;
+                score.text = (int.Parse(score.text) + 1).ToString();
             }
         }
     }
