@@ -19,6 +19,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float jumpHeight;
 
+    // SoundFX
+    [SerializeField] private AudioSource audioMovement;
+    [SerializeField] private AudioSource audioSword;
+
     // References to Unity Editor
     private CharacterController controller;
     private Animator anim;
@@ -67,17 +71,22 @@ public class PlayerMovement : MonoBehaviour
             if(moveDirection !=  Vector3.zero)
             {
                 anim.SetBool("isRunning", true);
-                
-
+                audioMovement.mute = false;
             } else {
                 anim.SetBool("isRunning", false);
+                audioMovement.mute = true;
             }
 
         }
+        else
+        {
+            audioMovement.mute = true;
+        }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack_01"))
         {
             anim.SetBool("isHitting", true);
+            audioSword.Play();
         }
 
 
