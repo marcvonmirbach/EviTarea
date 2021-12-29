@@ -40,10 +40,10 @@ namespace PathCreation.Examples
             distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider collider)
         {
-            Debug.Log(collision.gameObject.name);
-            if (collision.gameObject == sword)
+            Debug.Log(collider.gameObject.name);
+            if (collider.gameObject == sword)
             {
                 this.transform.position = initialPos;
                 distanceTravelled = 0;
