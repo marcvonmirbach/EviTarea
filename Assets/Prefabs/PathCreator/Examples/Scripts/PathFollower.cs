@@ -15,6 +15,12 @@ namespace PathCreation.Examples
         private Vector3 initialPos;
 
         void Start() {
+
+            // Runtime references
+            score = GameObject.Find("Score").GetComponent<Text>();
+            pathCreator = GameObject.Find("PathOfBall").GetComponent<PathCreator>();
+            sword = GameObject.Find("Sword_Joint");
+
             score.text = "0";
             initialPos = this.transform.position;
             if (pathCreator != null)
@@ -22,6 +28,8 @@ namespace PathCreation.Examples
                 // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
                 pathCreator.pathUpdated += OnPathChanged;
             }
+
+            
         }
 
         void Update()

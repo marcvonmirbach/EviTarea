@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
 
     // Variables
@@ -16,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float gravity;
-
+    [SerializeField] GameObject ball_prefab;
     [SerializeField] private float jumpHeight;
 
     // SoundFX
@@ -33,14 +34,25 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
+
+        if (GameObject.Find("Ball(Clone)") == null)
+        {
+            GameObject sphere = (GameObject)Instantiate(ball_prefab, new Vector3(0, 1, 0), transform.rotation);
+            NetworkServer.Spawn(sphere);
+            ClientScene.RegisterPrefab(sphere);
+        }
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        anim.SetBool("isHitting", false);
-        Movement();
+
+        if (this.isLocalPlayer)
+        {
+            anim.SetBool("isHitting", false);
+            Movement();
+        }
     }
 
     // Character movement
