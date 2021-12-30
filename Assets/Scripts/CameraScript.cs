@@ -46,6 +46,10 @@ public class CameraScript : MonoBehaviour
             tex = new WebCamTexture(device.name);
             display.texture = tex;
 
+            //
+            Renderer renderer = GetComponent<Renderer>();
+            renderer.material.mainTexture = tex;
+
             tex.Play();
             startStopText.text = "Stop Camera";
         }
