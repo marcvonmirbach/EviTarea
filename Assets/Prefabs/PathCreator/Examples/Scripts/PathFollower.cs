@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
+
 namespace PathCreation.Examples
 {
     // Moves along a path at constant speed.
     // Depending on the end of path instruction, will either loop, reverse, or stop at the end of the path.
-    public class PathFollower : MonoBehaviour
+    public class PathFollower : NetworkBehaviour
     {
         [SerializeField] private GameObject sword;
         [SerializeField] private Text score;
@@ -14,21 +16,30 @@ namespace PathCreation.Examples
         float distanceTravelled;
         private Vector3 initialPos;
 
+        [SerializeField] GameObject pathofball_prefab;
+
         void Start() {
 
-            // Runtime references
-            score = GameObject.Find("Score").GetComponent<Text>();
-            pathCreator = GameObject.Find("PathOfBall").GetComponent<PathCreator>();
-            sword = GameObject.Find("Sword_Joint");
-
-            score.text = "0";
-            initialPos = this.transform.position;
-            if (pathCreator != null)
+            
+            if (GameObject.Find("PathOfBall(Clone)") == null)
             {
-                // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
-                pathCreator.pathUpdated += OnPathChanged;
-            }
+                GameObject path = (GameObject)Instantiate(pathofball_prefab, new Vector3(0, 0, 0), transform.rotation);
+                NetworkServer.Spawn(path);
+                ClientScene.RegisterPrefab(path);
 
+                // Runtime references
+                score = GameObject.Find("Score").GetComponent<Text>();
+                pathCreator = GameObject.Find("PathOfBall(Clone)").GetComponent<PathCreator>();
+                sword = GameObject.Find("Sword_Joint");
+
+                score.text = "0";
+                initialPos = this.transform.position;
+                if (pathCreator != null)
+                {
+                    // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
+                    pathCreator.pathUpdated += OnPathChanged;
+                }
+            }
             
         }
 

@@ -117,6 +117,7 @@ MonoBehaviour:
   pathCreator: {fileID: 0}
   endOfPathInstruction: 0
   speed: 5
+  pathofball_prefab: {fileID: 2600760370822448170, guid: 44102b0dfbbaf7a48be0b4ab48562dac, type: 3}
 --- !u!54 &1745969691754996155
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -284,8 +285,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0.04761905
-  m_SyncRotationAxis: 7
+  m_SendInterval: 0.033333335
+  m_SyncRotationAxis: 0
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
   m_MovementTheshold: 0.001
