@@ -53,9 +53,9 @@ public class PlayerMovement : NetworkBehaviour
 
         // Change player name  & colors
 
-        if (GameObject.Find("player1") == null)
+        if (GameObject.Find("Player1") == null)
         {
-            this.gameObject.name = "player1";
+            this.gameObject.name = "Player1";
 
             Transform[] children = transform.GetComponentsInChildren<Transform>();
             foreach (var child in children)
@@ -69,7 +69,7 @@ public class PlayerMovement : NetworkBehaviour
         }
         else
         {
-            this.gameObject.name = "player2";
+            this.gameObject.name = "Player2";
 
             Transform[] children = transform.GetComponentsInChildren<Transform>();
             foreach (var child in children)
