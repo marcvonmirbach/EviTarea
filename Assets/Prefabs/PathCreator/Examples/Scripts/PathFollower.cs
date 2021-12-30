@@ -28,19 +28,24 @@ namespace PathCreation.Examples
                 ClientScene.RegisterPrefab(path);
 
                 // Runtime references
-                score = GameObject.Find("Score").GetComponent<Text>();
                 pathCreator = GameObject.Find("PathOfBall(Clone)").GetComponent<PathCreator>();
                 sword = GameObject.Find("Sword_Joint");
+                //score = GameObject.Find("Score").GetComponent<Text>();
 
-                score.text = "0";
+                //score.text = "0";
                 initialPos = this.transform.position;
                 if (pathCreator != null)
                 {
                     // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
                     pathCreator.pathUpdated += OnPathChanged;
                 }
+            } else
+            {
+                sword = GameObject.Find("Sword_Joint");
+                //score = GameObject.Find("Score").GetComponent<Text>();
             }
-            
+
+
         }
 
         void Update()
@@ -59,15 +64,12 @@ namespace PathCreation.Examples
             distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
         }
 
-        private void OnTriggerEnter(Collider collider)
+        
+        public void restartSphere()
         {
-            Debug.Log(collider.gameObject.name);
-            if (collider.gameObject == sword)
-            {
-                this.transform.position = initialPos;
-                distanceTravelled = 0;
-                score.text = (int.Parse(score.text) + 1).ToString();
-            }
+            this.transform.position = initialPos;
+            distanceTravelled = 0;
         }
+        
     }
 }

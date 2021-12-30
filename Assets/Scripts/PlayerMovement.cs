@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class PlayerMovement : NetworkBehaviour
 {
@@ -12,6 +13,12 @@ public class PlayerMovement : NetworkBehaviour
     private Vector3 moveDirection;
     private Vector3 velocity;
     private Vector3 moveArmDirection;
+
+    GameObject player;
+    /*
+    private Text score_player1;
+    private Text score_player2;
+    */
 
     [SerializeField] private bool isGrounded; // is the player on the ground?
     [SerializeField] private float groundCheckDistance;
@@ -41,6 +48,40 @@ public class PlayerMovement : NetworkBehaviour
             NetworkServer.Spawn(sphere);
             ClientScene.RegisterPrefab(sphere);
         }
+
+
+
+        // Change player name  & colors
+
+        if (GameObject.Find("player1") == null)
+        {
+            this.gameObject.name = "player1";
+
+            Transform[] children = transform.GetComponentsInChildren<Transform>();
+            foreach (var child in children)
+            {
+                if (child.name == "Torso")
+                {
+                    child.GetComponent<SkinnedMeshRenderer>().materials[1].SetColor("_Color", Color.green);
+                }
+            }            
+        
+        }
+        else
+        {
+            this.gameObject.name = "player2";
+
+            Transform[] children = transform.GetComponentsInChildren<Transform>();
+            foreach (var child in children)
+            {
+                if (child.name == "Torso")
+                {
+                    child.GetComponent<SkinnedMeshRenderer>().materials[1].SetColor("_Color", Color.yellow);
+                }
+            }
+        }
+
+
     }
 
 
@@ -124,4 +165,6 @@ public class PlayerMovement : NetworkBehaviour
     {
         velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity); // Weird formula to calculate jumping distance =)
     }
+
+    
 }
