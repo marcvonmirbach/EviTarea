@@ -51,6 +51,7 @@ public class HandleMicrophone : MonoBehaviour
             Debug.Log("Stop recording");
             Microphone.End(microphone);
             recording = false;
+            SavWav.Save("myfile1234", audioSource.clip);
         }
 
         // change microphone
